@@ -1,0 +1,43 @@
+.load {
+  margin: 0 auto;
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+
+  margin-bottom: 9rem;
+  @for $i from 1 through 8 {
+    .item-#{$i} {
+      position: absolute;
+      // background-color: #fff;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 20rem;
+      max-height: 20rem;
+      // background-color: red;
+      z-index: 10;
+      transform: rotate($i * 45deg);
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 60px;
+        border: 10px solid red;
+        border-radius: 50%;
+        filter: hue-rotate($i * 45deg);
+        animation: zoom 2s infinite;
+        animation-delay: calc($i * 0.25s);
+        animation-timing-function: linear;
+      }
+    }
+  }
+}
+
+@keyframes zoom {
+  to {
+    transform: scale(0);
+  }
+}
