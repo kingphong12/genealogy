@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { Outlet } from "react-router-dom";
 
@@ -18,10 +18,12 @@ import Sidebar from "./mainLayout/Sidebar";
 // import { drawerWidth } from "store/constant";
 // import { SET_MENU } from "store/actions";
 
+import ComputerIcon from "@material-ui/icons/Computer";
 // assets
 // import { IconChevronRight } from "@tabler/icons";
 import { open } from "../redux/action/open";
 import { drawerWidth } from "../contain/variable";
+import { cardImgList } from "../constaint/cardImgList";
 
 import img1 from "../images/anhbia.png";
 import img2 from "../images/background.jpg";
@@ -88,9 +90,11 @@ const MainLayout = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("sm"));
+
   // Handle left drawer
   const leftDrawerOpened = useSelector((state) => state.openSibar.opened);
   const dispatch = useDispatch();
+
   const handleLeftDrawerToggle = () => {
     dispatch(open(!leftDrawerOpened));
   };
@@ -100,6 +104,35 @@ const MainLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchDownMd]);
   console.log("matchDownMd", matchDownMd);
+
+  useEffect(() => {
+    const wrapperElement = document.querySelector(".wrapper");
+    const cardList = document.querySelectorAll(".item");
+    const cardListLength = cardList.length;
+    console.log(cardListLength);
+
+    cardList.forEach((item, index) => {
+      item.addEventListener("mouseenter", (event) => {
+        for (let i = 0; i <= cardListLength - 1; i++) {
+          let value = index - i;
+          if (index >= i && index - i <= 2) {
+            cardList[i].style.transform = `translateY(calc(-50px + 25px*${value}))`;
+          } else if (index < i && i - index <= 2) {
+            cardList[i].style.transform = `translateY(calc(-50px - 25px*${value}))`;
+            console.log("2");
+          } else {
+            cardList[i].style.transform = `translateY(calc(0px)`;
+          }
+        }
+      });
+    });
+
+    wrapperElement.addEventListener("mouseleave", (event) => {
+      cardList.forEach((item, index) => {
+        cardList[index].style.transform = `translateY(calc(0px)`;
+      });
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -124,105 +157,34 @@ const MainLayout = () => {
         ])}
       >
         <div className="wrapper">
-          <div className="item item__box-1"></div>
+          <div className="item item__box-1">
+            <ComputerIcon className="item-icon" color="primary" />
+          </div>
           <div className="item item__box-2"></div>
           <div className="item item__box-3"></div>
+          <div className="item item__box-4"></div>
+          <div className="item item__box-5"></div>
+
           <div className="item item__box-4"></div>
           <div className="item item__box-5"></div>
         </div>
 
         <div className="container-box">
-          <div className="cards">
-            <img src={img1} alt="img1" />
-            <div className="info">
-              <h1>Heading</h1>
-              <p>
-                React Hook useEffect has missing dependencies: 'classes.caroselItem', 'classes.root',
-                'handleNext', and 'handlePrev'. Either include them or remove the dependency array
-              </p>
-              <Button variant="contained" color="primary" type="submit">
-                Đăng nhập
-              </Button>
-            </div>
-          </div>
-          <div className="cards">
-            <img src={img2} alt="img2" />
-            <div className="info">
-              <h1>Heading</h1>
-              <p>
-                React Hook useEffect has missing dependencies: 'classes.caroselItem', 'classes.root',
-                'handleNext', and 'handlePrev'. Either include them or remove the dependency array
-              </p>
-              <Button variant="contained" color="primary" type="submit">
-                Đăng nhập
-              </Button>
-            </div>
-          </div>
-          <div className="cards">
-            <img src={img3} alt="img3" />
-            <div className="info">
-              <h1>Heading</h1>
-              <p>
-                React Hook useEffect has missing dependencies: 'classes.caroselItem', 'classes.root',
-                'handleNext', and 'handlePrev'. Either include them or remove the dependency array
-              </p>
-              <Button variant="contained" color="primary" type="submit">
-                Đăng nhập
-              </Button>
-            </div>
-          </div>
-          <div className="cards">
-            <img src={img3} alt="img3" />
-            <div className="info">
-              <h1>Heading</h1>
-              <p>
-                React Hook useEffect has missing dependencies: 'classes.caroselItem', 'classes.root',
-                'handleNext', and 'handlePrev'. Either include them or remove the dependency array
-              </p>
-              <Button variant="contained" color="primary" type="submit">
-                Đăng nhập
-              </Button>
-            </div>
-          </div>
-          <div className="cards">
-            <img src={img3} alt="img3" />
-            <div className="info">
-              <h1>Heading</h1>
-              <p>
-                React Hook useEffect has missing dependencies: 'classes.caroselItem', 'classes.root',
-                'handleNext', and 'handlePrev'. Either include them or remove the dependency array
-              </p>
-              <Button variant="contained" color="primary" type="submit">
-                Đăng nhập
-              </Button>
-            </div>
-          </div>
-          <div className="cards">
-            <img src={img3} alt="img3" />
-            <div className="info">
-              <h1>Heading</h1>
-              <p>
-                React Hook useEffect has missing dependencies: 'classes.caroselItem', 'classes.root',
-                'handleNext', and 'handlePrev'. Either include them or remove the dependency array
-              </p>
-              <Button variant="contained" color="primary" type="submit">
-                Đăng nhập
-              </Button>
-            </div>
-          </div>
-          <div className="cards">
-            <img src={img3} alt="img3" />
-            <div className="info">
-              <h1>Heading</h1>
-              <p>
-                React Hook useEffect has missing dependencies: 'classes.caroselItem', 'classes.root',
-                'handleNext', and 'handlePrev'. Either include them or remove the dependency array
-              </p>
-              <Button variant="contained" color="primary" type="submit">
-                Đăng nhập
-              </Button>
-            </div>
-          </div>
+          {cardImgList &&
+            cardImgList.map((cardImg, index) => {
+              return (
+                <div key={index} className="cards">
+                  <img src={cardImg.urlImg} alt={cardImg.alt} />
+                  <div className="info">
+                    <h1>{cardImg.title}</h1>
+                    <p>{cardImg.detail}</p>
+                    <Button variant="contained" color="primary">
+                      See more
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
         </div>
         {/* breadcrumb */}
         {/* <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign /> */}
