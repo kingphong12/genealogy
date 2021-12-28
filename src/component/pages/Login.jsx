@@ -172,7 +172,7 @@ const Login = () => {
   // });
 
   const handleNext = () => {
-    console.log(ref.current.children);
+    // console.log(ref.current.children);
     if (!animationCarosel) {
       setAnimationCarosel(true);
       // let middleChildren = Math.floor();
