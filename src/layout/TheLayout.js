@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { Outlet } from "react-router-dom";
 
 // material-ui
 import { makeStyles, useTheme } from "@material-ui/styles";
 import { AppBar, Button, CssBaseline, Toolbar, useMediaQuery } from "@material-ui/core";
+import ComputerIcon from "@material-ui/icons/Computer";
 
 // third-party
 import clsx from "clsx";
@@ -17,17 +18,11 @@ import Sidebar from "./mainLayout/Sidebar";
 // import navigation from "menu-items";
 // import { drawerWidth } from "store/constant";
 // import { SET_MENU } from "store/actions";
-
-import ComputerIcon from "@material-ui/icons/Computer";
 // assets
 // import { IconChevronRight } from "@tabler/icons";
 import { open } from "../redux/action/open";
 import { drawerWidth } from "../contain/variable";
 import { cardImgList } from "../constaint/cardImgList";
-
-import img1 from "../images/anhbia.png";
-import img2 from "../images/background.jpg";
-import img3 from "../images/background3.jpg";
 
 import "./main.scss";
 // style constant
@@ -90,7 +85,6 @@ const MainLayout = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("sm"));
-
   // Handle left drawer
   const leftDrawerOpened = useSelector((state) => state.openSibar.opened);
   const dispatch = useDispatch();
@@ -117,11 +111,14 @@ const MainLayout = () => {
           let value = index - i;
           if (index >= i && index - i <= 2) {
             cardList[i].style.transform = `translateY(calc(-50px + 25px*${value}))`;
+            cardList[i].style.boxShadow = "1px 5px 5px chocolate";
           } else if (index < i && i - index <= 2) {
             cardList[i].style.transform = `translateY(calc(-50px - 25px*${value}))`;
+            cardList[i].style.boxShadow = "1px 5px 5px chocolate";
             console.log("2");
           } else {
             cardList[i].style.transform = `translateY(calc(0px)`;
+            cardList[i].style.boxShadow = "none";
           }
         }
       });
@@ -130,6 +127,7 @@ const MainLayout = () => {
     wrapperElement.addEventListener("mouseleave", (event) => {
       cardList.forEach((item, index) => {
         cardList[index].style.transform = `translateY(calc(0px)`;
+        cardList[index].style.boxShadow = "none";
       });
     });
   }, []);
@@ -166,6 +164,9 @@ const MainLayout = () => {
           <div className="item item__box-5"></div>
 
           <div className="item item__box-4"></div>
+          <div className="item item__box-5"></div>
+          <div className="item item__box-5"></div>
+          <div className="item item__box-5"></div>
           <div className="item item__box-5"></div>
         </div>
 

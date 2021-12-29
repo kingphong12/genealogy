@@ -12,16 +12,18 @@ $__spacing: 5px;
 
   background-color: antiquewhite;
   flex-wrap: wrap;
-  margin: 20px -5px;
+  margin: 20px auto;
+  width: 100rem;
   .item {
     width: calc(10% - $__spacing);
     height: 10rem;
     // background-color: rgb(210, 248, 156);
-    transition: transform 0.5s;
+    transition: all 0.5s;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid #fff;
-
+    cursor: pointer;
+    // box-shadow: 1px 5px 5px chocolate;
     // &:hover {
     //   transform: scale(1.5);
     //   @for $i from 1 to 5 {
@@ -33,7 +35,6 @@ $__spacing: 5px;
     //     }
     //   }
     // }
-
     // @for $i from 1 to 5 {
     //   &.item__box-#{$i} {
     //     &:hover {
@@ -107,22 +108,25 @@ $__spacing: 5px;
       left: 0;
     }
     .info {
+      $__padding: 1rem;
       position: relative;
       z-index: 3;
       color: #fff;
       opacity: 0;
       transform: translateY(30px);
       transition: 0.5s all;
+      padding: 0 $__padding 1.4rem;
+
       h1 {
-        padding: 0 1rem;
+        // padding: 0 1rem;
         position: relative;
         &::after {
           content: "";
           position: absolute;
-          width: calc(100% + 1rem);
+          width: calc(100% + $__padding);
           height: 4px;
           background-color: aqua;
-          top: 100%;
+          top: 145%;
           z-index: 10;
           left: 0;
           transform: translateX(-100%);
