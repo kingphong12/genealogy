@@ -3,12 +3,14 @@ import React from "react";
 
 // material-ui
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { Box, Drawer, useMediaQuery } from "@material-ui/core";
-
+import { Box, Drawer, MenuItem, useMediaQuery } from "@material-ui/core";
+// import { MenuList } from "@mui/material";
+import MenuList from "@mui/material/MenuList";
 // third-party
 // import PerfectScrollbar from "react-perfect-scrollbar";
 // import { BrowserView, MobileView } from "react-device-detect";
 import { drawerWidth } from "../../../contain/variable";
+import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 // import Hidden from "@mui/material/Hidden";
 
 // project imports
@@ -57,15 +59,17 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
 
   const classes = useStyles();
   const theme = useTheme();
+  const { url } = useRouteMatch();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  // console.log(matchUpMd);
   const drawer = (
     <>
       <Box sx={{ display: { xs: "block", md: "none" } }}>
         <div className={classes.boxContainer}>
           {/* <LogoSection /> */}
-          Logo
+          <MenuList>
+            <MenuItem>user1</MenuItem>
+          </MenuList>
         </div>
       </Box>
       <Box sx={{ display: { xs: "block", md: "none" } }}>
@@ -80,7 +84,11 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           {/* <MenuList />
 
           <MenuCard /> */}
-          Browwer
+          <MenuList>
+            <Link to={`${url}/user2`}>
+              <MenuItem>User2</MenuItem>
+            </Link>
+          </MenuList>
         </Box>
       </Box>
     </>

@@ -25,6 +25,7 @@ import { drawerWidth } from "../contain/variable";
 import { cardImgList } from "../constaint/cardImgList";
 
 import "./main.scss";
+import { openSibar } from "../redux/createSlice/openSlice";
 // style constant
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
     },
     [theme.breakpoints.down("md")]: {
-      marginLeft: "20px",
+      // marginLeft: "20px",
       width: `calc(100% - ${drawerWidth}px)`,
       padding: "16px",
     },
@@ -90,7 +91,8 @@ const MainLayout = () => {
   const dispatch = useDispatch();
 
   const handleLeftDrawerToggle = () => {
-    dispatch(open(!leftDrawerOpened));
+    dispatch(openSibar(!leftDrawerOpened));
+    console.log("tesst");
   };
 
   React.useEffect(() => {
@@ -110,15 +112,19 @@ const MainLayout = () => {
         for (let i = 0; i <= cardListLength - 1; i++) {
           let value = index - i;
           if (index >= i && index - i <= 2) {
-            cardList[i].style.transform = `translateY(calc(-50px + 25px*${value}))`;
+            cardList[
+              i
+            ].style.transform = `translateY(calc(-50px + 25px*${value})) scale(calc(1 - 0.2*${value}))`;
             cardList[i].style.boxShadow = "1px 5px 5px chocolate";
           } else if (index < i && i - index <= 2) {
-            cardList[i].style.transform = `translateY(calc(-50px - 25px*${value}))`;
+            cardList[
+              i
+            ].style.transform = `translateY(calc(-50px - 25px*${value})) scale(calc(1 + 0.2*${value}))`;
             cardList[i].style.boxShadow = "1px 5px 5px chocolate";
             console.log("2");
           } else {
-            cardList[i].style.transform = `translateY(calc(0px)`;
-            cardList[i].style.boxShadow = "none";
+            cardList[i].style.transform = `translateY(calc(0px)) scale(0.4)`;
+            cardList[i].style.boxShadow = "1px 1px 1px chocolate";
           }
         }
       });

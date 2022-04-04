@@ -143,3 +143,13 @@ $__spacing: 5px;
     }
   }
 }
+
+.images-container {
+  width: 500px;
+  .item-images {
+    background-image: url("../images/background3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    padding-bottom: 56.25%;
+  }
+}

@@ -122,17 +122,6 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    const fetData = async () => {
-      try {
-        const response = await usersApi.getAll();
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetData();
-  }, []);
 
   return (
     <Box sx={{ width: "100%", minHeight: "100vh" }}>
